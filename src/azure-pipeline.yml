@@ -33,7 +33,7 @@ resources:
 variables:
   - template: '/miscellaneous/build_templates/variables.yml@templates'
   - name: projPath
-    value: /basic_samples/SDS_TimeSeries/Python
+    value: '/src/'
   - name: CredFile
     value: config.ini
   - name: CredFileLibraryOCS
