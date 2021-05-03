@@ -1,6 +1,6 @@
 # Building a Python client to make REST API calls to the SDS Service
 
-**Version:** 1.0.21
+**Version:** 1.0.22
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-time_series-python?repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)
 
@@ -10,7 +10,7 @@ This sample code uses the python `requests` module, which natively supports enco
 
 The sections that follow provide a brief description of the process from beginning to end.
 
-Developed against Python 3.7.2.
+Developed against Python 3.9.1.
 
 ## Running the Sample
 
@@ -59,7 +59,7 @@ ClientSecret = REPLACE_WITH_APPLICATION_SECRET
 
 ---
 
-Automated test uses Python 3.6.8 x64
+Automated test uses Python 3.9.1 x64
 
 For the main OCS time series samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/SDS_TIME_SERIES_README.md)  
 For the main OCS samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  

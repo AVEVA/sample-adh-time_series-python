@@ -27,31 +27,13 @@ VALUE_CACHE_2 = []
 def get_type_value_time():
     """Creates a type for value/time events"""
 
-    type_value_time = SdsType(
-        id=TYPE_VALUE_TIME_NAME,
-        description="A Time-Series indexed type with a value",
-        sdsTypeCode=SdsTypeCode.Object)
+    double_type = SdsType("doubleType", SdsTypeCode.Double)
+    time_type = SdsType("string", SdsTypeCode.DateTime)
+    value = SdsTypeProperty("value", False, double_type)
+    time_prop = SdsTypeProperty("time", True, time_type)
 
-    double_type = SdsType()
-    double_type.Id = "doubleType"
-    double_type.SdsTypeCode = SdsTypeCode.Double
-
-    time_type = SdsType()
-    time_type.Id = "string"
-    time_type.SdsTypeCode = SdsTypeCode.DateTime
-
-    value = SdsTypeProperty()
-    value.Id = "value"
-    value.SdsType = double_type
-
-    time_prop = SdsTypeProperty()
-    time_prop.Id = "time"
-    time_prop.SdsType = time_type
-    time_prop.IsKey = True
-
-    type_value_time.Properties = []
-    type_value_time.Properties.append(value)
-    type_value_time.Properties.append(time_prop)
+    type_value_time = SdsType(TYPE_VALUE_TIME_NAME, SdsTypeCode.Object, [value, time_prop],
+                              description="A Time-Series indexed type with a value")
 
     return type_value_time
 
@@ -59,33 +41,15 @@ def get_type_value_time():
 def get_type_press_temp_time():
     """Creates a type for press/temp/time events"""
 
-    type_press_temp_time = SdsType(
-        id=TYPE_PRESSURE_TEMPERATURE_TIME_NAME,
-        description="A Time-Series indexed type with 2 values",
-        sdsTypeCode=SdsTypeCode.Object)
+    double_type = SdsType("doubleType", SdsTypeCode.Double)
+    time_type = SdsType("string", SdsTypeCode.DateTime)
+    temperature = SdsTypeProperty("temperature", False, double_type)
+    pressure = SdsTypeProperty("pressure", False, double_type)
+    time_prop = SdsTypeProperty("time", True, time_type)
 
-    double_type = SdsType()
-    double_type.Id = "doubleType"
-    double_type.SdsTypeCode = SdsTypeCode.Double
-
-    time_type = SdsType()
-    time_type.Id = "string"
-    time_type.SdsTypeCode = SdsTypeCode.DateTime
-
-    temperature = SdsTypeProperty()
-    temperature.Id = "temperature"
-    temperature.SdsType = double_type
-
-    pressure = SdsTypeProperty()
-    pressure.Id = "pressure"
-    pressure.SdsType = double_type
-
-    time_prop = SdsTypeProperty()
-    time_prop.Id = "time"
-    time_prop.SdsType = time_type
-    time_prop.IsKey = True
-
-    type_press_temp_time.Properties = [temperature, pressure, time_prop]
+    type_press_temp_time = SdsType(TYPE_PRESSURE_TEMPERATURE_TIME_NAME, SdsTypeCode.Object,
+                                   [temperature, pressure, time_prop],
+                                   description="A Time-Series indexed type with 2 values")
 
     return type_press_temp_time
 
@@ -194,27 +158,21 @@ def main(test=False):
 
         # step 3
         print('Creating a stream for pressure and temperature')
-        pressure_stream = SdsStream(
-            id=STREAM_PRESSURE_NAME,
-            typeId=time_value_type.Id,
-            description="A stream for pressure data of tank1")
+        pressure_stream = SdsStream(STREAM_PRESSURE_NAME, time_value_type.Id,
+                                    description="A stream for pressure data of tank1")
         sds_client.Streams.createOrUpdateStream(namespace_id, pressure_stream)
-        temperature_stream = SdsStream(
-            id=STREAM_TEMP_NAME,
-            typeId=time_value_type.Id,
-            description="A stream for temperature data of tank1")
+        temperature_stream = SdsStream(STREAM_TEMP_NAME, time_value_type.Id,
+                                       description="A stream for temperature data of tank1")
         sds_client.Streams.createOrUpdateStream(
             namespace_id, temperature_stream)
 
         # step 4
-        sds_client.Streams.insertValues(
-            namespace_id,
-            pressure_stream.Id,
-            json.dumps((get_pressure_data())))
-        sds_client.Streams.insertValues(
-            namespace_id,
-            temperature_stream.Id,
-            json.dumps((get_temperature_data())))
+        sds_client.Streams.insertValues(namespace_id,
+                                        pressure_stream.Id,
+                                        json.dumps((get_pressure_data())))
+        sds_client.Streams.insertValues(namespace_id,
+                                        temperature_stream.Id,
+                                        json.dumps((get_temperature_data())))
 
         # step 5
         print('Creating a tank type that has both stream and temperature')
@@ -223,10 +181,8 @@ def main(test=False):
 
         # step 6
         print('Creating a tank stream')
-        tank_stream = SdsStream(
-            id=STREAM_TANK_1,
-            typeId=tank_type.Id,
-            description="A stream for data of tank1s")
+        tank_stream = SdsStream(STREAM_TANK_1, tank_type.Id,
+                                description="A stream for data of tank1s")
         sds_client.Streams.createOrUpdateStream(namespace_id, tank_stream)
 
         # step 7
@@ -294,10 +250,8 @@ def main(test=False):
         print('Now we want to look at data across multiple tanks.')
         print('For that we can take advantage of bulk stream calls')
         print('Creating new tank streams')
-        tank_stream = SdsStream(
-            id=STREAM_TANK_2,
-            typeId=tank_type.Id,
-            description="A stream for data of tank2")
+        tank_stream = SdsStream(STREAM_TANK_2, tank_type.Id,
+                                description="A stream for data of tank2")
         sds_client.Streams.createOrUpdateStream(namespace_id, tank_stream)
 
         data_tank_2 = get_data_tank_2()
@@ -309,8 +263,7 @@ def main(test=False):
         first_time_tank_2 = tank_2_sorted[0]['time']
         last_time_tank_2 = tank_2_sorted[-1]['time']
 
-        tank_stream = SdsStream(
-            id=STREAM_TANK_0, typeId=tank_type.Id, description="")
+        tank_stream = SdsStream(STREAM_TANK_0, tank_type.Id, description="")
         sds_client.Streams.createOrUpdateStream(namespace_id, tank_stream)
 
         sds_client.Streams.insertValues(
