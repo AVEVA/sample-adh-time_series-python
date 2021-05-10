@@ -1,6 +1,6 @@
 # Building a Python client to make REST API calls to the SDS Service
 
-**Version:** 1.0.22
+**Version:** 1.0.23
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-time_series-python?repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)
 
