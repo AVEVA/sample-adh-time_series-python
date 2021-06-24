@@ -1,6 +1,6 @@
 # Building a Python client to make REST API calls to the SDS Service
 
-**Version:** 1.0.25
+**Version:** 1.1.0
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-time_series-python?repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)
 
@@ -45,7 +45,8 @@ The values to be replaced are in `config.ini`:
 
 ```ini
 [Configurations]
-Namespace = Samples
+Namespace = REPLACE_WITH_NAMESPACE_ID
+Community = DELETE_OR_REPLACE_WITH_COMMUNITY_ID
 
 [Access]
 Resource = https://dat-b.osisoft.com

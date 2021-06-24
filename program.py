@@ -7,8 +7,9 @@ Sequential Data Store REST API with Time Series data
 import configparser
 import json
 import time
+import jsonpatch
 from ocs_sample_library_preview import (SdsType, SdsTypeCode, SdsTypeProperty,
-                                        EDSClient, OCSClient, SdsStream)
+                                        EDSClient, OCSClient, SdsStream, Role)
 
 SENDING_TO_OCS = True
 TYPE_VALUE_TIME_NAME = "Value_Time"
@@ -135,6 +136,7 @@ def main(test=False):
         config.read('config.ini')
         tenant_id = config.get('Access', 'Tenant')
         namespace_id = config.get('Configurations', 'Namespace')
+        community_id = config.get('Configurations', 'Community')
 
         # step 1
         if tenant_id == 'default' and namespace_id == 'default':
@@ -278,13 +280,60 @@ def main(test=False):
             first_time_tank_2, last_time_tank_2)
         print(results)
 
+        #######################################################################
+        # Community steps
+        #######################################################################
+        if (community_id):
+            # step 12
+            print()
+            print('Get tenant roles')
+            roles = sds_client.Roles.getRoles()
+            role: Role = None
+            for r in roles:
+                if r.RoleTypeId == sds_client.Roles.CommunityMember and r.CommunityId == community_id:
+                    role = r
+                    break
+            print('Community member Id:')
+            print(role.Id)
+
+            print()
+            print('Sharing stream to community')
+            patch = jsonpatch.JsonPatch(
+                [{
+                    'op': 'add', 'path': '/RoleTrusteeAccessControlEntries/-',
+                    'value': {
+                        'AccessRights': 1, 'AccessType': 0,
+                        'Trustee': {'ObjectId': role.Id, 'TenantId': None, 'Type': 'Role'}
+                    }
+                }])
+            sds_client.Streams.patchStreamAccessControl(
+                namespace_id, STREAM_PRESSURE_NAME, patch)
+
+            # step 13
+            print()
+            print('Searching the community')
+            community_streams = sds_client.Communities.getCommunityStreams(
+                community_id, STREAM_PRESSURE_NAME)
+            print('Found matching streams:')
+            for s in community_streams:
+                print(s.Id)
+
+            # step 14
+            print()
+            print('Getting stream data from the community stream')
+            community_stream = community_streams[0]
+            community_data = sds_client.Streams.getLastValueUrl(
+                community_stream.Self)
+            print('Retrieved last value:')
+            print(community_data['value'])
+
     except Exception as ex:
         exception = ex
         print(f"Encountered Error: {ex}")
         print()
 
     finally:
-        # step 12
+        # step 15
         print()
         print()
         print()
