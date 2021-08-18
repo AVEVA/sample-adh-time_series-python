@@ -332,32 +332,32 @@ def main(test=False):
         print(f"Encountered Error: {ex}")
         print()
 
-    finally:
-        # step 15
-        print()
-        print()
-        print()
-        print("Cleaning up")
-        print("Deleting the stream")
-        suppress_error(lambda: sds_client.Streams.deleteStream(
-            namespace_id, STREAM_PRESSURE_NAME))
-        suppress_error(lambda: sds_client.Streams.deleteStream(
-            namespace_id, STREAM_TEMP_NAME))
-        suppress_error(lambda: sds_client.Streams.deleteStream(
-            namespace_id, STREAM_TANK_0))
-        suppress_error(lambda: sds_client.Streams.deleteStream(
-            namespace_id, STREAM_TANK_1))
-        suppress_error(lambda: sds_client.Streams.deleteStream(
-            namespace_id, STREAM_TANK_2))
+    # finally:
+    #     # step 15
+    #     print()
+    #     print()
+    #     print()
+    #     print("Cleaning up")
+    #     print("Deleting the stream")
+    #     suppress_error(lambda: sds_client.Streams.deleteStream(
+    #         namespace_id, STREAM_PRESSURE_NAME))
+    #     suppress_error(lambda: sds_client.Streams.deleteStream(
+    #         namespace_id, STREAM_TEMP_NAME))
+    #     suppress_error(lambda: sds_client.Streams.deleteStream(
+    #         namespace_id, STREAM_TANK_0))
+    #     suppress_error(lambda: sds_client.Streams.deleteStream(
+    #         namespace_id, STREAM_TANK_1))
+    #     suppress_error(lambda: sds_client.Streams.deleteStream(
+    #         namespace_id, STREAM_TANK_2))
 
-        print("Deleting the types")
-        suppress_error(lambda: sds_client.Types.deleteType(
-            namespace_id, TYPE_PRESSURE_TEMPERATURE_TIME_NAME))
-        suppress_error(lambda: sds_client.Types.deleteType(
-            namespace_id, TYPE_VALUE_TIME_NAME))
+    #     print("Deleting the types")
+    #     suppress_error(lambda: sds_client.Types.deleteType(
+    #         namespace_id, TYPE_PRESSURE_TEMPERATURE_TIME_NAME))
+    #     suppress_error(lambda: sds_client.Types.deleteType(
+    #         namespace_id, TYPE_VALUE_TIME_NAME))
 
-        if test and exception is not None:
-            raise exception
+    #     if test and exception is not None:
+    #         raise exception
     print('Complete!')
 
 
