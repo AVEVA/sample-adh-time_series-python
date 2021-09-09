@@ -306,7 +306,7 @@ def main(test=False):
                         'Trustee': {'ObjectId': role.Id, 'TenantId': None, 'Type': 'Role'}
                     }
                 }])
-            sds_client.Streams.patchStreamAccessControl(
+            sds_client.Streams.patchAccessControl(
                 namespace_id, STREAM_PRESSURE_NAME, patch)
 
             # step 13
