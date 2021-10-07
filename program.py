@@ -4,7 +4,6 @@ Sequential Data Store REST API with Time Series data
 """
 
 
-import configparser
 import json
 import time
 import jsonpatch
@@ -23,6 +22,25 @@ STREAM_TANK_2 = "Tank2"
 
 VALUE_CACHE = []
 VALUE_CACHE_2 = []
+
+
+
+def get_appsettings():
+    """Open and parse the appsettings.json file"""
+
+    # Try to open the configuration file
+    try:
+        with open(
+            'appsettings.json',
+            'r',
+        ) as f:
+            appsettings = json.load(f)
+    except Exception as error:
+        print(f'Error: {str(error)}')
+        print(f'Could not open/read appsettings.json')
+        exit()
+
+    return appsettings
 
 
 def get_type_value_time():
@@ -132,24 +150,23 @@ def main(test=False):
     """This function is the main body of the SDS Time Series sample script"""
     exception = None
     try:
-        config = configparser.ConfigParser()
-        config.read('config.ini')
-        tenant_id = config.get('Access', 'Tenant')
-        namespace_id = config.get('Configurations', 'Namespace')
-        community_id = config.get('Configurations', 'Community')
+        appsettings = get_appsettings()
+        tenant_id = appsettings.get('TenantId')
+        namespace_id = appsettings.get('NamespaceId')
+        community_id = appsettings.get('CommunityId')
 
         # step 1
         if tenant_id == 'default' and namespace_id == 'default':
             sds_client = EDSClient(
-                config.get('Access', 'ApiVersion'),
-                config.get('Access', 'Resource'))
+                appsettings.get('ApiVersion'),
+                appsettings.get('Resource'))
         else:
             sds_client = OCSClient(
-                config.get('Access', 'ApiVersion'),
-                config.get('Access', 'Tenant'),
-                config.get('Access', 'Resource'),
-                config.get('Credentials', 'ClientId'),
-                config.get('Credentials', 'ClientSecret'),
+                appsettings.get('ApiVersion'),
+                appsettings.get('TenantId'),
+                appsettings.get('Resource'),
+                appsettings.get('ClientId'),
+                appsettings.get('ClientSecret'),
                 False)
 
         # step 2
