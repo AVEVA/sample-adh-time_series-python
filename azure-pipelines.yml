@@ -74,7 +74,7 @@ jobs:
       - name: NamespaceId
         value: default
       - name: Resource
-        value: https://localhost:5590
+        value: http://localhost:5590
     steps:
       - template: '/miscellaneous/build_templates/appsettings.yml@templates'
 
