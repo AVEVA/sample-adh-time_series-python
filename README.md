@@ -1,6 +1,6 @@
 # Building a Python client to make REST API calls to the SDS Service
 
-**Version:** 1.1.3
+**Version:** 1.1.4
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-time_series-python?repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)
 
@@ -17,8 +17,8 @@ Developed against Python 3.9.1.
 1. Clone the GitHub repository
 1. Install required modules: `pip install -r requirements.txt`
 1. Open the folder with your favorite IDE
-1. Configure the sample using the file [config.placeholder.ini](config.placeholder.ini). Before editing, rename this file to `config.ini`. This repository's `.gitignore` rules should prevent the file from ever being checked in to any fork or branch, to ensure credentials are not compromised.
-1. Update `config.ini` with the credentials provided by OSIsoft
+1. Configure the sample using the file [appsettings.placeholder.json](appsettings.placeholder.json). Before editing, rename this file to `appsettings.json`. This repository's `.gitignore` rules should prevent the file from ever being checked in to any fork or branch, to ensure credentials are not compromised.
+1. Update `appsettings.json` with the credentials provided by OSIsoft
 1. Run `program.py`
 
 To Test the sample:
@@ -34,28 +34,25 @@ or
 
 Included in the sample there is a configuration file with placeholders that need to be replaced with the proper values. They include information for authentication, connecting to the SDS Service, and pointing to a namespace.
 
-To run this sample against the Edge Data Store, the sample must be run locally on the machine where Edge Data Store is installed. In addition, the same config information must be entered with the exception of the `[Credentials]` section of the file. For a typical or default installation, the values will be:
+To run this sample against the Edge Data Store, the sample must be run locally on the machine where Edge Data Store is installed. In addition, the same config information must be entered with the exception of the `ClientId` and `ClientSecret` parameters. For a typical or default installation, the values will be:
 
-- `Namespace = default`
-- `Resource = http://localhost:5590`
-- `Tenant = default`
-- `ApiVersion = v1`
+- `"Namespace": "default"`
+- `"Resource": "http://localhost:5590"`
+- `"Tenant": "default"`
+- `"ApiVersion": "v1"`
 
-The values to be replaced are in `config.ini`:
+The values to be replaced are in `appsettings.json`:
 
-```ini
-[Configurations]
-Namespace = REPLACE_WITH_NAMESPACE_ID
-Community =
-
-[Access]
-Resource = https://dat-b.osisoft.com
-Tenant = REPLACE_WITH_TENANT_ID
-ApiVersion = v1
-
-[Credentials]
-ClientId = REPLACE_WITH_APPLICATION_IDENTIFIER
-ClientSecret = REPLACE_WITH_APPLICATION_SECRET
+```json
+{
+  "Resource": "https://dat-b.osisoft.com",
+  "ApiVersion": "v1",
+  "TenantId": "PLACEHOLDER_REPLACE_WITH_TENANT_ID",
+  "NamespaceId": "PLACEHOLDER_REPLACE_WITH_NAMESPACE_ID",
+  "CommunityId": null,
+  "ClientId": "PLACEHOLDER_REPLACE_WITH_APPLICATION_IDENTIFIER",
+  "ClientSecret": "PLACEHOLDER_REPLACE_WITH_APPLICATION_SECRET"
+}
 ```
 
 ### Community
