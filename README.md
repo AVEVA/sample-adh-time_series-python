@@ -1,6 +1,6 @@
 # Building a Python client to make REST API calls to the SDS Service
 
-**Version:** 1.1.4
+**Version:** 1.1.5
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/OCS/osisoft.sample-ocs-time_series-python?repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&repoName=osisoft%2Fsample-ocs-time_series-python&branchName=main)
 
@@ -65,6 +65,6 @@ If you are not using OCS communities, leave the `Community` field blank.
 
 Automated test uses Python 3.9.1 x64
 
-For the main OCS time series samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/SDS_TIME_SERIES_README.md)  
+For the main OCS time series samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS/blob/main/docs/SDS_TIME_SERIES.md)  
 For the main OCS samples page [ReadMe](https://github.com/osisoft/OSI-Samples-OCS)  
 For the main OSIsoft samples page [ReadMe](https://github.com/osisoft/OSI-Samples)
