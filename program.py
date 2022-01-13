@@ -222,7 +222,7 @@ def main(test=False):
 
         # step 8
         results = sds_client.Streams.getWindowValues(
-            namespace_id, STREAM_PRESSURE_NAME, None, first_time, last_time)
+            namespace_id, STREAM_PRESSURE_NAME, first_time, last_time)
 
         print()
         print('Value from pressure stream:')
@@ -231,7 +231,7 @@ def main(test=False):
         print()
         print('Value from tank1 stream:')
         results = sds_client.Streams.getWindowValues(
-            namespace_id, STREAM_TANK_1, None, first_time, last_time)
+            namespace_id, STREAM_TANK_1, first_time, last_time)
         print((results)[1])
 
         # step 9
@@ -246,12 +246,12 @@ def main(test=False):
         print()
         print('Value from pressure stream:')
         results = sds_client.Streams.getWindowValues(
-            namespace_id, STREAM_PRESSURE_NAME, None, first_time, last_time)
+            namespace_id, STREAM_PRESSURE_NAME, first_time, last_time)
         print((results)[1])
         print()
         print('Value from tank1 stream:')
         results = sds_client.Streams.getWindowValues(
-            namespace_id, STREAM_TANK_1, None, first_time, last_time)
+            namespace_id, STREAM_TANK_1, first_time, last_time)
         print((results)[1])
 
         # step 10

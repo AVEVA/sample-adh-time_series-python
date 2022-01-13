@@ -1,7 +1,7 @@
 """This script tests the SDS Time Series Python sample script"""
 
 import unittest
-from .program import main
+from program import main
 
 
 class SDSTimeSeriesPythonSampleTests(unittest.TestCase):
