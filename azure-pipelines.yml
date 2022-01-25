@@ -36,7 +36,7 @@ variables:
 jobs:
   - job: Tests
     strategy:
-      maxParallel: 1 # Avoid conflicts in OCS
+      maxParallel: 1 # Avoid conflicts in ADH
       matrix:
         linux:
           agentOS: Linux
@@ -48,7 +48,7 @@ jobs:
     steps:
       - template: '/miscellaneous/build_templates/appsettings.yml@templates'
         parameters:
-          secrets: 'TenantId, NamespaceId, CommunityId, ClientId, ClientSecret'
+          secrets: 'TenantId, NamespaceId, CommunityId, ClientId, ClientSecret, Resource'
 
       - script: |
           echo Install test tools   
