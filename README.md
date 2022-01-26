@@ -1,5 +1,8 @@
 # Building a Python client to make REST API calls to the SDS Service
 
+| :loudspeaker: **Notice**: Samples have been updated to reflect that they work on AVEVA Data Hub. The samples also work on OSIsoft Cloud Services unless otherwise noted. |
+| -----------------------------------------------------------------------------------------------|
+
 **Version:** 1.2.0
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-time_series-python?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&branchName=main)
