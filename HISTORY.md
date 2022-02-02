@@ -1,5 +1,9 @@
 # Version History
 
+## 1.1.8 / 2022-02-9
+
+- Changed agent used in pipeline
+
 ## 1.1.7 / 2022-01-17
 
 - Updated dependencies
