@@ -8,9 +8,9 @@ import json
 import time
 import jsonpatch
 from ocs_sample_library_preview import (SdsType, SdsTypeCode, SdsTypeProperty,
-                                        EDSClient, OCSClient, SdsStream, Role)
+                                        EDSClient, ADHClient, SdsStream, Role)
 
-SENDING_TO_OCS = True
+SENDING_TO_ADH = True
 TYPE_VALUE_TIME_NAME = "Value_Time"
 TYPE_PRESSURE_TEMPERATURE_TIME_NAME = "Pressure_Temp_Time"
 
@@ -161,7 +161,7 @@ def main(test=False):
                 appsettings.get('ApiVersion'),
                 appsettings.get('Resource'))
         else:
-            sds_client = OCSClient(
+            sds_client = ADHClient(
                 appsettings.get('ApiVersion'),
                 appsettings.get('TenantId'),
                 appsettings.get('Resource'),
