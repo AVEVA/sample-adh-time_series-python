@@ -7,7 +7,7 @@ Sequential Data Store REST API with Time Series data
 import json
 import time
 import jsonpatch
-from ocs_sample_library_preview import (SdsType, SdsTypeCode, SdsTypeProperty,
+from adh_sample_library_preview import (SdsType, SdsTypeCode, SdsTypeProperty,
                                         EDSClient, ADHClient, SdsStream, Role)
 
 SENDING_TO_ADH = True
