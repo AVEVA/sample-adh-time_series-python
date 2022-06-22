@@ -33,6 +33,10 @@ variables:
   - name: analysisProject
     value: SDS_TS_Python
 
+parameters:
+  - name: containerDemandsEDS
+    default: PYTHON
+
 jobs:
   - job: Tests
     strategy:
@@ -71,7 +75,7 @@ jobs:
   - job: Tests_EDS
     pool:
       name: 00-OSIManaged-Build
-      demands: PYTHON
+      demands: ${{ parameters.containerDemandsEDS }}
     variables:
       - name: TenantId
         value: default
