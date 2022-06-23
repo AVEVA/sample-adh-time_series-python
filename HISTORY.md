@@ -1,8 +1,12 @@
 # Version History
 
-## 1.2.4 / 2022-06-20
+## 1.2.5 / 2022-06-20
 
 - Updated dependencies
+
+## 1.2.4 / 2022-06-15
+
+- Parameterize Azure Pipeline container demands
 
 ## 1.2.3 / 2022-05-10
 
