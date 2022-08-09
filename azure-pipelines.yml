@@ -34,8 +34,16 @@ variables:
     value: SDS_TS_Python
 
 parameters:
+  - name: poolADH
+    default: 00-OSIManaged-Containers
+  - name: containerDemandsADH
+    type: object
+    default: ['Agent.OS -equals $(agentOS)']
+  - name: poolEDS
+    default: 00-OSIManaged-Containers
   - name: containerDemandsEDS
-    default: PYTHON
+    type: object
+    default: ['PYTHON']
 
 jobs:
   - job: Tests
@@ -48,8 +56,8 @@ jobs:
         windows:
           agentOS: Windows_NT
     pool:
-      name: 00-OSIManaged-Containers
-      demands: Agent.OS -equals $(agentOS)
+      name: ${{ parameters.poolADH }}
+      demands: ${{ parameters.containerDemandsADH }}
     steps:
       - template: '/miscellaneous/build_templates/appsettings.yml@templates'
         parameters:
@@ -76,7 +84,7 @@ jobs:
   - job: Tests_EDS
     condition: ne(variables['Build.Reason'], 'Schedule')
     pool:
-      name: 00-OSIManaged-Build
+      name: ${{ parameters.poolEDS }}
       demands: ${{ parameters.containerDemandsEDS }}
     variables:
       - name: TenantId
