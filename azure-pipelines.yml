@@ -40,7 +40,7 @@ parameters:
     type: object
     default: ['Agent.OS -equals $(agentOS)']
   - name: poolEDS
-    default: 00-OSIManaged-Containers
+    default: 00-OSIManaged-Build
   - name: containerDemandsEDS
     type: object
     default: ['PYTHON']
