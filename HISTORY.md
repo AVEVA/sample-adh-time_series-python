@@ -1,5 +1,9 @@
 # Version History
 
+## 1.2.8 / 2023-03-28
+
+- Update pipeline with container for EDS
+
 ## 1.2.7 / 2022-08-17
 
 - Automate dependabot approval and automerge
