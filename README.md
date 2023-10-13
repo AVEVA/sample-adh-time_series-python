@@ -1,6 +1,6 @@
 # Building a Python client to make REST API calls to the SDS Service
 
-**Version:** 1.2.8
+**Version:** 1.2.9
 
 [![Build Status](https://dev.azure.com/osieng/engineering/_apis/build/status/product-readiness/ADH/aveva.sample-adh-time_series-python?branchName=main)](https://dev.azure.com/osieng/engineering/_build/latest?definitionId=2624&branchName=main)
 
