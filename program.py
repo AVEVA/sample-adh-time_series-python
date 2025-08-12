@@ -339,8 +339,8 @@ def main(test=False):
             print()
             print('Getting stream data from the community stream')
             community_stream = community_streams[0]
-            community_data = sds_client.Streams.getLastValueUrl(
-                community_stream.Self)
+            community_data = sds_client.SharedStreams.getLastValue(
+                community_stream.TenantId,community_stream.NamespaceId, community_id, community_stream.Id)
             print('Retrieved last value:')
             print(community_data['value'])
 

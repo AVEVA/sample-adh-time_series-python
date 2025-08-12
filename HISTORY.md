@@ -1,5 +1,9 @@
 # Version History
 
+## 1.2.10 / 2025-08-12
+
+- Fixed issue with community data call
+
 ## 1.2.9 / 2023-10-13
 
 - Migrate Pipelines
